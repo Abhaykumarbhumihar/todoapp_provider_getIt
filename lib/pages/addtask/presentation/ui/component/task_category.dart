@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -12,7 +13,6 @@ class TaskCategory {
 
 class AddToListComponent extends StatelessWidget {
   final TaskCategory? selectedCategory;
-  final VoidCallback? addNewListClick;
 
   // Static list of Task Categories
   final List<TaskCategory> dropdownItems = [
@@ -25,7 +25,6 @@ class AddToListComponent extends StatelessWidget {
   AddToListComponent({
     Key? key,
     this.selectedCategory,
-    this.addNewListClick,
   }) : super(key: key);
 
   @override
@@ -84,7 +83,9 @@ class AddToListComponent extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: addNewListClick,
+              onPressed: () {
+                _showDialog(context);
+              },
               icon: Icon(
                 FontAwesomeIcons.outdent,
                 color: Colors.white,
@@ -94,6 +95,42 @@ class AddToListComponent extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  void _showDialog(BuildContext context) {
+    final TextEditingController textController = TextEditingController();
+
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text('New List'),
+          content: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: CupertinoTextField(
+              controller: textController,
+              placeholder: 'Enter List Name',
+            ),
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              child: Text('Add'),
+              onPressed: () {
+                final String inputText = textController.text;
+
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
