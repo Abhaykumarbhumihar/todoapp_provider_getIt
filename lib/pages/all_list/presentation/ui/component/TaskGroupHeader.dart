@@ -2,18 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../common/values/app_color.dart';
+import '../../../../addtask/domain/entities/add_task_model.dart';
 
-class AddTaskModel {
-  final String id;
-  final String date;
-  final String title;
 
-  AddTaskModel({
-    required this.id,
-    required this.date,
-    required this.title,
-  });
-}
+
 
 class TaskGroupHeader extends StatelessWidget {
   final AddTaskModel task;

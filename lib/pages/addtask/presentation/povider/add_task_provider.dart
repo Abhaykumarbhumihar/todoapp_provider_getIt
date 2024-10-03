@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:todo_app_provider_getit/common/extension/common_extension.dart';
-
 import '../../../../common/service_locator/service_locator.dart';
+import '../../domain/entities/add_task_model.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/usecase/add_task_use_case.dart';
 
@@ -33,12 +33,12 @@ class AddTaskProvider with ChangeNotifier {
   // Setters
 
   set selectedCategory(TaskCategory? category) {
-    _selectedCategory = category; // Setter for selectedCategory
-    notifyListeners(); // Notify listeners to update UI
+    _selectedCategory = category;
+    notifyListeners();
   }
 
   set categoryList(List<TaskCategory> categories) {
-    _categoryList = categories; // Setter for categoryList
+    _categoryList = categories;
     notifyListeners();
   }
 
@@ -51,6 +51,8 @@ class AddTaskProvider with ChangeNotifier {
     _dueDate = value;
     if (value != "") {
       isDateSet = true;
+      print(isDateSet);
+      print("SDF SDF SDF ==== SDF SDF SDF ");
     } else {
       isDateSet = false;
     }
@@ -103,5 +105,29 @@ class AddTaskProvider with ChangeNotifier {
       notifyListeners();
     });
     print(data);
+  }
+
+  /*add task*/
+
+  addTask(String taskName) async {
+    TaskCategory taskCategory;
+    if (selectedCategory == null) {
+      taskCategory = TaskCategory(categoryName: "Default", categoryId: 2);
+    } else {
+      taskCategory = selectedCategory!;
+    }
+
+    final response = await _addTodoUseCase.addTask(AddTaskModel(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        title: taskName,
+        time: time ?? "",
+        category: taskCategory,
+        date: dueDate ?? ""));
+
+    response.fold((failure) {
+      print(failure.message);
+    }, (_) {
+      print("Task added");
+    });
   }
 }

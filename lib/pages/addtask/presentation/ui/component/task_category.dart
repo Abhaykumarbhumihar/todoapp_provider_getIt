@@ -13,8 +13,6 @@ class AddToListComponent extends StatelessWidget {
   const AddToListComponent({super.key});
 
 
-
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery

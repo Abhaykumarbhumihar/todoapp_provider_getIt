@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../../common/app_component/component.dart';
 import '../../../../../common/responsive/screenUtils.dart';
 import '../../../../../common/values/app_color.dart';
 import '../../povider/add_task_provider.dart';
@@ -34,29 +31,42 @@ class AddTask extends StatelessWidget {
               const TaskTitleComponent(),
               SizedBox(height: screenHeight * 0.1),
               const DueDateField(),
-              context.read<AddTaskProvider>().isDateSet
-                  ? const TimeField()
-                  : const SizedBox.shrink(),
+              Consumer<AddTaskProvider>(
+                builder: (context, provider, child) {
+                  return provider.isDateSet ? TimeField() : SizedBox.shrink();
+                },
+              ),
               SizedBox(height: screenHeight * 0.1),
               AddToListComponent()
             ]),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        elevation: 6.0,
-        mini: false,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(screenWidth),
-        ),
-        tooltip: 'Add Item',
-        child: const Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
+      floatingActionButton: Consumer<AddTaskProvider>(
+        builder: (context, provider, child) {
+          return FloatingActionButton(
+            onPressed: () {
+              if(provider.taskName.isEmpty){
+                print("Task name is mandatory");
+              }else{
+                context.read<AddTaskProvider>().addTask(provider.taskName);
+              }
+
+            },
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            elevation: 6.0,
+            mini: false,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(screenWidth),
+            ),
+            tooltip: 'Add Item',
+            child: const Icon(
+              Icons.check,
+              color: Colors.white,
+            ),
+          );
+        },
       ),
     ));
   }

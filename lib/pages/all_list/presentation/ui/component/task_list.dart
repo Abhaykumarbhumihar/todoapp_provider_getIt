@@ -3,6 +3,7 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_provider_getit/pages/all_list/presentation/ui/component/task_item.dart';
 
+import '../../../../addtask/domain/entities/add_task_model.dart';
 import 'TaskGroupHeader.dart';
 
 class TaskList extends StatelessWidget {
@@ -17,10 +18,10 @@ class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<AddTaskModel> tasks = [
-      AddTaskModel(id: '1', date: '2024-10-01', title: 'Buy groceries'),
-      AddTaskModel(id: '2', date: '2024-10-02', title: 'Morning meeting'),
-      AddTaskModel(id: '3', date: '', title: 'No date task'),
-      AddTaskModel(id: '4', date: '2024-10-03', title: 'Doctor Appointment'),
+
+
+
+
     ];
     return GroupedListView<AddTaskModel, String>(
       elements: tasks,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../common/values/app_color.dart';
+import '../../../../addtask/domain/entities/add_task_model.dart';
 import 'TaskGroupHeader.dart';
 
 class TaskItem extends StatelessWidget {
