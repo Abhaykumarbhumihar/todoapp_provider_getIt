@@ -17,12 +17,12 @@ class AddToListComponent extends StatelessWidget {
   // Static list of Task Categories
   final List<TaskCategory> dropdownItems = [
     TaskCategory(categoryName: 'Work', categoryId: 1),
-     TaskCategory(categoryName: 'Personal', categoryId: 2),
-     TaskCategory(categoryName: 'Shopping', categoryId: 3),
-     TaskCategory(categoryName: 'Others', categoryId: 4),
+    TaskCategory(categoryName: 'Personal', categoryId: 2),
+    TaskCategory(categoryName: 'Shopping', categoryId: 3),
+    TaskCategory(categoryName: 'Others', categoryId: 4),
   ];
 
-   AddToListComponent({
+  AddToListComponent({
     Key? key,
     this.selectedCategory,
     this.addNewListClick,
@@ -96,5 +96,4 @@ class AddToListComponent extends StatelessWidget {
       ],
     );
   }
-
 }
