@@ -47,7 +47,7 @@ class AddTask extends StatelessWidget {
           return FloatingActionButton(
             onPressed: () {
               if(provider.taskName.isEmpty){
-                print("Task name is mandatory");
+                debugPrint("Task name is mandatory");
               }else{
                 context.read<AddTaskProvider>().addTask(provider.taskName);
               }

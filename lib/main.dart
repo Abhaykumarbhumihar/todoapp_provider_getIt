@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app_provider_getit/pages/addtask/domain/usecase/add_task_use_case.dart';
 import 'package:todo_app_provider_getit/pages/addtask/presentation/povider/add_task_provider.dart';
 import 'package:todo_app_provider_getit/pages/addtask/presentation/ui/screen/add_task.dart';
+import 'package:todo_app_provider_getit/pages/all_list/presentation/provider/todo_list_provider.dart';
 import 'package:todo_app_provider_getit/pages/all_list/presentation/ui/screen/all_list.dart';
 
 import 'common/local_storage/hive/hive_helper.dart';
@@ -25,10 +26,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AddTaskProvider()..getCategoryList(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => TodoListProvider()..getTodoList(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: AddTask(),
+        home: AllList(),
       ),
     );
   }

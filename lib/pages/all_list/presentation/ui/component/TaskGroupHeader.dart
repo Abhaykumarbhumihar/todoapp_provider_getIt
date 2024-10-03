@@ -10,7 +10,7 @@ import '../../../../addtask/domain/entities/add_task_model.dart';
 class TaskGroupHeader extends StatelessWidget {
   final AddTaskModel task;
 
-  const TaskGroupHeader({Key? key, required this.task}) : super(key: key);
+  const TaskGroupHeader({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
