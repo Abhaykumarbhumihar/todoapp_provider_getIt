@@ -24,6 +24,7 @@ dependencies:
   intl: any
   grouped_list:
   provider:
+  font_awesome_flutter:
 
 dev_dependencies:
   flutter_test:
