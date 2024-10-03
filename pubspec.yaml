@@ -25,6 +25,7 @@ dependencies:
   grouped_list:
   provider:
   font_awesome_flutter:
+  either_dart: ^1.0.0
 
 dev_dependencies:
   flutter_test:

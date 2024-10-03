@@ -5,6 +5,7 @@ import '../../../pages/addtask/domain/entities/add_task_model.dart';
 import '../../../pages/addtask/domain/entities/category.dart';
 
 
+
 class HiveHelper {
   static final HiveHelper _instance = HiveHelper._internal();
 
@@ -26,15 +27,14 @@ class HiveHelper {
   Future<Box<T>> openBox<T>(String boxName) async {
     try {
       if (Hive.isBoxOpen(boxName)) {
-        return Hive.box<T>(boxName);
+        return Hive.box<T>(boxName);  // Return the already open box
       } else {
-        return await Hive.openBox<T>(boxName);
+        return await Hive.openBox<T>(boxName);  // Open the box if not open
       }
     } catch (e) {
       throw Exception("Failed to open box: $boxName, error: $e");
     }
   }
-
   /// Add data to a box
   Future<void> addData<T>(String boxName, T data) async {
     try {

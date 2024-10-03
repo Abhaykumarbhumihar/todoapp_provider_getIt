@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:todo_app_provider_getit/main.dart';
+import 'package:provider/provider.dart';
+
+import 'package:todo_app_provider_getit/pages/addtask/presentation/povider/add_task_provider.dart';
 
 import '../../../../../common/app_component/component.dart';
+import '../../../domain/entities/category.dart';
 
-class TaskCategory {
-  final String categoryName;
-  final int categoryId;
 
-  TaskCategory({required this.categoryName, required this.categoryId});
-}
+
 
 class AddToListComponent extends StatelessWidget {
   final TaskCategory? selectedCategory;
@@ -34,8 +35,6 @@ class AddToListComponent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        // Example title widget, replace with your actual title widget
-
         title(
           context: context!,
           screenWidth: screenWidth!,
@@ -98,7 +97,9 @@ class AddToListComponent extends StatelessWidget {
     );
   }
 
-  void _showDialog(BuildContext context) {
+  void _showDialog(
+    BuildContext context,
+  ) {
     final TextEditingController textController = TextEditingController();
 
     showCupertinoDialog(
@@ -124,8 +125,9 @@ class AddToListComponent extends StatelessWidget {
               child: Text('Add'),
               onPressed: () {
                 final String inputText = textController.text;
-
+                context.read<AddTaskProvider>().addCategory(inputText);
                 Navigator.of(context).pop();
+
               },
             ),
           ],
