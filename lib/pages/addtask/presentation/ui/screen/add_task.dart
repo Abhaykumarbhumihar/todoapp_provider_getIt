@@ -38,10 +38,7 @@ class AddTask extends StatelessWidget {
                   ? const TimeField()
                   : const SizedBox.shrink(),
               SizedBox(height: screenHeight * 0.1),
-              AddToListComponent(
-                selectedCategory:
-                    null, // Or pass a selected TaskCategory object
-              )
+              AddToListComponent()
             ]),
           ),
         ),

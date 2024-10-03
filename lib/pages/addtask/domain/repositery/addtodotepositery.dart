@@ -6,5 +6,5 @@ import '../entities/category.dart';
 
 abstract class AddTodoRepositery{
   Future<Either<Failure,void>> addCategory(TaskCategory category);
-  Future<Either<Failure,dynamic>>getCategory();
+  Future<Either<Failure,List<TaskCategory>>>getCategory();
 }

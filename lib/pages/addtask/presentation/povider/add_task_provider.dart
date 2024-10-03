@@ -11,11 +11,15 @@ class AddTaskProvider with ChangeNotifier {
   TextEditingController dueDateController = TextEditingController();
   TextEditingController timeController = TextEditingController();
 
+  List<TaskCategory> _categoryList = [];
   String _taskName = '';
   String _dueDate = '';
   String _time = '';
   bool _isDateSet = false;
   bool _isTimeSet = false;
+
+  /*selected category */
+  TaskCategory? _selectedCategory;
 
   // Getters
   String get taskName => _taskName;
@@ -23,8 +27,20 @@ class AddTaskProvider with ChangeNotifier {
   String get time => _time;
   bool get isDateSet => _isDateSet;
   bool get isTimeSet => _isTimeSet;
+  List<TaskCategory> get categoryList => _categoryList;
+  TaskCategory? get selectedCategory => _selectedCategory;
 
   // Setters
+
+  set selectedCategory(TaskCategory? category) {
+    _selectedCategory = category; // Setter for selectedCategory
+    notifyListeners(); // Notify listeners to update UI
+  }
+
+  set categoryList(List<TaskCategory> categories) {
+    _categoryList = categories; // Setter for categoryList
+    notifyListeners();
+  }
 
   set taskName(String value) {
     _taskName = value;
@@ -58,7 +74,6 @@ class AddTaskProvider with ChangeNotifier {
 
   set isTimeSet(bool value) {
     _isTimeSet = value;
-
     notifyListeners();
   }
 
@@ -71,9 +86,10 @@ class AddTaskProvider with ChangeNotifier {
 
     final response = await _addTodoUseCase.addCategory(category);
     response.fold((failure) {
-      print(failure.message);
+      debugPrint(failure.message);
     }, (_) {
       getCategoryList();
+      notifyListeners();
     });
   }
 
@@ -83,7 +99,8 @@ class AddTaskProvider with ChangeNotifier {
     data.fold((failure) {
       print(failure.message);
     }, (data) {
-      print(data);
+      categoryList = data;
+      notifyListeners();
     });
     print(data);
   }

@@ -16,7 +16,7 @@ class AddTodoUseCase {
     return await _addTaskRepositery.addCategory(category);
   }
 
-  Future<Either<Failure, dynamic>> getCategory() async {
+  Future<Either<Failure, List<TaskCategory>>> getCategory() async {
     return await _addTaskRepositery.getCategory();
   }
 }

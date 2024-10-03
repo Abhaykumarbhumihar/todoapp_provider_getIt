@@ -15,14 +15,14 @@ class AddTodoRepositeryImpl extends AddTodoRepositery{
   Future<Either<Failure,void>> addCategory(TaskCategory category)async {
     try {
       await _hiveHelper.addData("category", category);
-      return Right(null);
+      return const Right(null);
     } catch (e) {
       return Left(Failure("Failed to add category: $e"));
     }
   }
 
   @override
-  Future<Either<Failure,dynamic>> getCategory()async {
+  Future<Either<Failure,List<TaskCategory>>> getCategory()async {
     try {
       final category =await _hiveHelper.getAllData<TaskCategory>("category");
       if(category.isNotEmpty){
