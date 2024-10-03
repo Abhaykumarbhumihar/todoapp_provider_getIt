@@ -18,6 +18,8 @@ class AllList extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: AppColor.backgroundColor,
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(ScreenUtils.height(context) * 0.1),
           child: const AppBarComponent()),

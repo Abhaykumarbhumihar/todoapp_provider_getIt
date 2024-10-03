@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_provider_getit/pages/addtask/presentation/ui/screen/add_task.dart';
 import 'package:todo_app_provider_getit/pages/all_list/presentation/ui/screen/all_list.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AllList(),
+      home: AddTask(),
     );
   }
 }

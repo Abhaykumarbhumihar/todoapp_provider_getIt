@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../values/app_color.dart';
+
 InputDecoration customInputDecoration({
   required String hintText,
   Color hintTextColor = Colors.white38,
@@ -31,5 +33,15 @@ InputDecoration customInputDecoration({
       borderSide: BorderSide(color: enabledBorderColor),
     ),
     contentPadding: contentPadding,
+  );
+}
+Widget title({BuildContext? context, String? title, double? screenWidth}) {
+  return Text(
+    "$title",
+    style: TextStyle(
+      color: AppColor.appSubTextColor,
+      fontSize: screenWidth! * 0.04,
+      fontFamily: 'Poppins Medium',
+    ),
   );
 }
